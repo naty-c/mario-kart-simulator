@@ -102,7 +102,8 @@ Let's simulate an epic race between two players using pure logic, a dash of luck
     <ul>
       <li><input type="checkbox" id="pistas-2-1-item" /> <label for="pistas-2-1-item"><b>➡️ Straight:</b> both racers roll a 6-sided dice. Each adds their <b>Speed</b> attribute to the roll. The highest total <b>earns 1 point</b>.</label></li>
       <li><input type="checkbox" id="pistas-2-2-item" /> <label for="pistas-2-2-item"><b>🔄 Curve:</b> both racers roll a 6-sided dice. Each adds their <b>Maneuverability</b> attribute to the roll. The highest total <b>earns 1 point</b>.</label></li>
-      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item"><b>⚔️ Battle:</b> both racers roll a 6-sided dice. Each adds their <b>Power</b> attribute to the roll. The <b>loser loses 1 point</b>.</label></li>
+      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item"><b>⚔️ Battle:</b> both racers roll a 6-sided dice. Each adds their <b>Power</b> attribute to the roll. The winner earns glory, while the loser may be hit by a random obstacle: 
+      <b>Banana Peel 🍌 (-1), Turtle Shell 🐢 (-2), or Bomb 💣 (-3)</b>. It's up to 3 points, depending on their luck!</label></li>
       <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Negative scores are not allowed (below 0 points)</label></li>
     </ul>
   </li>
