@@ -68,39 +68,51 @@ async function playRaceEngine(player1, player2) {
             await logRollResult(player.Name, attributeName, diceResult, attributePoints);
         }
 
-        if (track === "Battle") {
-            const [p1, p2] = results;
-            console.log(`${p1.player.Name} challenged ${p2.player.Name}! 🥊`);
+            // 🎲 Penalties for the defeated player
+            function applyPenalty(player) {
+                const penalties = [
+                    { name: "Banana Peel 🍌", value: 1 },
+                    { name: "Turtle Shell 🐢", value: 2 },
+                    { name: "Bomb 💣", value: 3 }
+                ];
+              
+                const penalty = penalties[Math.floor(Math.random() * penalties.length)];
+            
+                if (player.Score > 0) {
+                    const lostPoints = Math.min(penalty.value, player.Score);
+                    player.Score -= lostPoints;
+                    console.log(`${player.Name} was caught by a ${penalty.name} and lost ${lostPoints} point(s)! 💥`);
+                    } else {
+                    console.log(`${player.Name} was caught by a ${penalty.name}, but has no points to lose! 😅`);
+                    }
+            }
 
-            if (p1.total > p2.total) {
-                if (p2.player.Score > 0) {
-                    console.log(`${p1.player.Name} won the match! ${p2.player.Name} lost 1 point 💣`);
-                } else {
-                    console.log(`${p1.player.Name} won the match! ${p2.player.Name} has no points to lose. 🛡️`);
-                }
-                p2.player.Score = Math.max(0, p2.player.Score - 1);
-            } else if (p2.total > p1.total) {
-                if (p1.player.Score > 0) {
-                    console.log(`${p2.player.Name} won the match! ${p1.player.Name} lost 1 point 💣`);
-                } else {
-                    console.log(`${p2.player.Name} won the match! ${p1.player.Name} has no points to lose. 🛡️`);
-                }
-                p1.player.Score = Math.max(0, p1.player.Score - 1);
-            } else {
-                console.log("The match resulted in a draw. No points lost!");
-            }     
+    if (track === "Battle") {
+        const [p1, p2] = results;
+        console.log(`${p1.player.Name} challenged ${p2.player.Name}! 🥊`);
+
+        if (p1.total > p2.total) {
+            console.log(`${p1.player.Name} won the match!`);
+            applyPenalty(p2.player);
+
+        } else if (p1.total < p2.total) {
+            console.log(`${p2.player.Name} won the match!`);
+            applyPenalty(p1.player);
 
         } else {
-            const winner = results.reduce((prev, curr) => curr.total > prev.total ? curr : prev);
-            const tied = results.filter(r => r.total === winner.total);
-
-            if (tied.length === 1) {
-                console.log(`${winner.player.Name} scored 1 point! 🤩`);
-                winner.player.Score++;
-            } else {
-                console.log("It's a draw! No one scores this round.");
-            }
+            console.log("The match resulted in a draw. No points lost! 🛡️");
         }
+    } else {
+        const winner = results.reduce((prev, curr) => curr.total > prev.total ? curr : prev);
+        const tied = results.filter(r => r.total === winner.total);
+
+        if (tied.length === 1) {
+            console.log(`${winner.player.Name} scored 1 point! 🤩`);
+            winner.player.Score++;
+        } else {
+            console.log("It's a draw! No one scores this round.");
+        }
+    }
 
         console.log("-----------------");
     }
@@ -123,7 +135,7 @@ async function declareWinner(p1, p2) {
 (async function main() {
     const [player1, player2] = getRandomPlayers(players);
 
-    console.log(`🏁🚨 Ready, set, go! The race between ${player1.Name} and ${player2.Name} is starting... \n`);
+    console.log(`🚦🏁 Ready, set, go! The race between ${player1.Name} and ${player2.Name} is starting... \n`);
 
     await playRaceEngine(player1, player2);
     await declareWinner(player1, player2);
