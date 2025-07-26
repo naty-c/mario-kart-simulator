@@ -103,7 +103,10 @@ Let's simulate an epic race between two players using pure logic, a dash of luck
       <li><input type="checkbox" id="pistas-2-1-item" /> <label for="pistas-2-1-item"><b>➡️ Straight:</b> both racers roll a 6-sided dice. Each adds their <b>Speed</b> attribute to the roll. The highest total <b>earns 1 point</b>.</label></li>
       <li><input type="checkbox" id="pistas-2-2-item" /> <label for="pistas-2-2-item"><b>🔄 Curve:</b> both racers roll a 6-sided dice. Each adds their <b>Maneuverability</b> attribute to the roll. The highest total <b>earns 1 point</b>.</label></li>
       <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item"><b>⚔️ Battle:</b> both racers roll a 6-sided dice. Each adds their <b>Power</b> attribute to the roll. The winner earns glory, while the loser may be hit by a random obstacle: 
-      <b>Banana Peel 🍌 (-1), Turtle Shell 🐢 (-2), or Bomb 💣 (-3)</b>. It's up to 3 points, depending on their luck!</label></li>
+      <b>Banana Peel 🍌 (-1), Turtle Shell 🐢 (-2), or Bomb 💣 (-3)</b>. It's up to 3 points, depending on their luck!     
+      <b>⚔️ Battle:</b> both racers roll a 6-sided dice and add their <b>Power</b> attribute to the total.  
+    The winner earns glory and might receive a surprise <b>bonus</b>: <b>Speed Boost ⚡ (+1), Extra Coins 💰 (+2), or Super Star 🌟 (+3)</b>! Meanwhile, the loser may be hit by a random obstacle: <b>Banana Peel 🍌 (-1), Turtle Shell 🐢 (-2), or Bomb 💣 (-3)</b>. It’s a risky track, up to 3 points gained or lost depending on luck! 🎲
+      </label></li>
       <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Negative scores are not allowed (below 0 points)</label></li>
     </ul>
   </li>
