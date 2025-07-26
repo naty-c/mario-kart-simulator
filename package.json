@@ -1,0 +1,17 @@
+{
+  "name": "mario-kart-simulator",
+  "version": "1.0.0",
+  "description": "Race Simulator inspired by Mario Kart",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "project",
+    "race simulator",
+    "mario kart"
+  ],
+  "author": "Natália Cagnani",
+  "license": "ISC"
+}
