@@ -68,8 +68,22 @@ async function playRaceEngine(player1, player2) {
             await logRollResult(player.Name, attributeName, diceResult, attributePoints);
         }
 
+            // 🎲 Bonus for the winner
+            function applyBonus(winner) {
+                const bonuses = [
+                    { name: "Speed Boost ⚡️", value: 1 },
+                    { name: "Extra Coins 💰", value: 2 },
+                    { name: "Super Star 🌟", value: 3 }
+                ];
+
+                const bonus = bonuses[Math.floor(Math.random() * bonuses.length)];
+                winner.Score += bonus.value;
+
+                console.log(`${winner.Name} received ${bonus.name} and gained ${bonus.value} bonus point(s) 🎉`);
+            };
+
             // 🎲 Penalties for the defeated player
-            function applyPenalty(player) {
+            function applyPenalty(loser) {
                 const penalties = [
                     { name: "Banana Peel 🍌", value: 1 },
                     { name: "Turtle Shell 🐢", value: 2 },
@@ -78,12 +92,12 @@ async function playRaceEngine(player1, player2) {
               
                 const penalty = penalties[Math.floor(Math.random() * penalties.length)];
             
-                if (player.Score > 0) {
-                    const lostPoints = Math.min(penalty.value, player.Score);
-                    player.Score -= lostPoints;
-                    console.log(`${player.Name} was caught by a ${penalty.name} and lost ${lostPoints} point(s)! 💥`);
+                if (loser.Score > 0) {
+                    const lostPoints = Math.min(penalty.value, loser.Score);
+                    loser.Score -= lostPoints;
+                    console.log(`${loser.Name} was caught by a ${penalty.name} and lost ${lostPoints} point(s)! 💥`);
                     } else {
-                    console.log(`${player.Name} was caught by a ${penalty.name}, but has no points to lose! 😅`);
+                    console.log(`${loser.Name} was caught by a ${penalty.name}, but has no points to lose! 😅`);
                     }
             }
 
@@ -93,10 +107,12 @@ async function playRaceEngine(player1, player2) {
 
         if (p1.total > p2.total) {
             console.log(`${p1.player.Name} won the match!`);
+            applyBonus(p1.player);
             applyPenalty(p2.player);
 
         } else if (p1.total < p2.total) {
             console.log(`${p2.player.Name} won the match!`);
+            applyBonus(p2.player);
             applyPenalty(p1.player);
 
         } else {
